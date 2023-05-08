@@ -1,5 +1,5 @@
 # 10weeksofcloudops Challenge - 1st Week
-This project is initiated by > Piyush Sachdeva
+This project is initiated by **Piyush Sachdeva**
 
 ### Week1: Hosting static website on azure
 
