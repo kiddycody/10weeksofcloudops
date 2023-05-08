@@ -3,7 +3,7 @@ This project is initiated by Piyush Sachdeva
 
 ### Week1: Hosting static website on azure
 
-##### Services Used:
+#### Services Used:
 
 Storage - Azure Storage Accounts, containers for storing web files.
 
