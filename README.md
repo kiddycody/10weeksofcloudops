@@ -5,8 +5,8 @@ This project was initiated by [**Piyush Sachdeva**](https://www.linkedin.com/in/
 
 #### Services Used:
 
-**Storage** - Azure Storage Accounts, containers for storing web files.
+* **Storage** - Azure Storage Accounts, containers for storing web files.
 
-**Caching** - Azure CDN for edge caching
+* **Caching** - Azure CDN for edge caching
 
-**DNS** - Personal namecheap.com DNS (you can use azure provided DNS)
+* **DNS** - Personal namecheap.com DNS (you can use azure provided DNS)
