@@ -1,1 +1,27 @@
+name: azure-static-website
+run-name: Ferouze
+on:
+  push:
+    branches:
+      - main
+jobs:
+  push-site-toazure:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set up Azure CLI
+      uses: azure/setup-azure-cli@v1
+
+    - name: Deploy to Azure Static Website
+      run: |
+        az storage blob upload-batch --destination '$web' --source ./week1/site/ --pattern "*.html"
+    
+    
 
