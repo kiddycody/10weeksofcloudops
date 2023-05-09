@@ -16,9 +16,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-   # - name: Set up Azure CLI
-    #  uses: azure/setup-azure-cli@v1
-
     - name: Deploy to Azure Static Website
       run: |
         az storage blob upload-batch --destination '$web' --source ./week1/site/ --pattern "*.html"
