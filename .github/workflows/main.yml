@@ -36,7 +36,8 @@ jobs:
         echo 2 "${{steps.ip.outputs.ipaddr}}"
         
         echo 3 "$(ipaddr)"
-        
+        echo $GITHUB_OUTPUT
+        echo out "${{GITHUB_OUTPUT}}"
      # echo 1 ${{steps.ip.$ipaddr}}
     
     - name: Deploy to Azure Static Website
