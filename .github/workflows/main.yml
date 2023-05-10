@@ -6,9 +6,13 @@ on:
       - main
 jobs:
   push-site-toazure:
-    runs-on: ubuntu-latest
-    
-    steps:
+   
+   #outputs:
+    #ipentry: ${{steps.ip.outputs.ipaddr}}
+   
+   runs-on: ubuntu-latest
+   
+   steps:
     - uses: actions/checkout@v2
     
     - name: Get IP address
@@ -18,14 +22,19 @@ jobs:
        ipjson=$(curl 'https://api.ipify.org?format=json' -s)
        ipaddr=$(echo $ipjson | jq .ip -r)
        echo $ipaddr
+       
         
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
     - name: allow ip in storage firewall
-      run: |
-        az storage account network-rule add --account-name 10wcosa --ip-address '${{steps.ip.ipaddr}}'
+      #run: |
+       # az storage account network-rule add --account-name 10wcosa --ip-address 
+      run: | 
+        echo 1 ${{steps.ip.$ipaddr}}
+        echo 2 ${{steps.ip.ipaddr}}
+        echo 3 $ipaddr
         
     - name: Deploy to Azure Static Website
       run: |
