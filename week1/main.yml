@@ -1,0 +1,11 @@
+name: azure-static-website
+run-name: Ferouze
+on: push
+# on: [push, fork] -- using multiple events
+jobs:
+  push-sites-to-azure:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: actions/
+
+
