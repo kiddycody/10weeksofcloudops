@@ -21,7 +21,7 @@ jobs:
        sudo apt-get install -y jq
        ipjson=$(curl 'https://api.ipify.org?format=json' -s)
        ipaddr=$(echo $ipjson | jq .ip -r)
-       echo "ip=$ipaddr" >>$GITHUB_OUTPUT
+       echo "ip=$ipaddr" >> $GITHUB_OUTPUT
        
     - name: Azure Login
       uses: azure/login@v1
