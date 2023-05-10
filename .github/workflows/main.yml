@@ -21,4 +21,3 @@ jobs:
         az storage blob upload-batch --destination '$web' --source ./week1/site/ --pattern "*.html"
     
     
-#
