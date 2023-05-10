@@ -23,7 +23,10 @@ jobs:
       uses: azure/login@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
-  
+    - name: allow ip in storage firewall
+      run: |
+        az storage account network-rule add --account-name 10wcosa --ip-address ${{ steps.ip.ipaddr }}
+        
     - name: Deploy to Azure Static Website
       run: |
         az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
