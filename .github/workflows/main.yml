@@ -14,7 +14,7 @@ jobs:
     - name: Get IP address
       id: ip
       run: |
-       apt install -y jq
+       sudo apt install -y jq
        ipjson=$(curl 'https://api.ipify.org?format=json' -s)
        ipaddr=$(echo $ipjson | jq .ip -r)
        echo $ipaddr
