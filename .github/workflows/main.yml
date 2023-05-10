@@ -25,7 +25,7 @@ jobs:
         creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
     - name: allow ip in storage firewall
       run: |
-        az storage account network-rule add --account-name 10wcosa --ip-address ${{ steps.ip.ipaddr }}
+        az storage account network-rule add --account-name 10wcosa --ip-address '${{steps.ip.ipaddr}}'
         
     - name: Deploy to Azure Static Website
       run: |
