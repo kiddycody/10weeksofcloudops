@@ -22,7 +22,7 @@ jobs:
        ipjson=$(curl 'https://api.ipify.org?format=json' -s)
        ipaddr=$(echo $ipjson | jq .ip -r)
        echo "{ipad}={ipaddr}" >> $GITHUB_OUTPUT
-       echo $GITHUB_OUTPUT
+       
        echo out "${{GITHUB_OUTPUT}}"
         
     - name: Azure Login
@@ -36,7 +36,7 @@ jobs:
         echo 2 "${{steps.ip.outputs.ipaddr}}"
         
         echo 3 "$(ipaddr)"
-        echo $GITHUB_OUTPUT
+       
         echo out "${{GITHUB_OUTPUT}}"
      # echo 1 ${{steps.ip.$ipaddr}}
     
