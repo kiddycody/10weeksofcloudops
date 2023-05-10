@@ -21,4 +21,4 @@ jobs:
         az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
     
     
-##
+###
