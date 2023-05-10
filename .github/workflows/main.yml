@@ -18,6 +18,6 @@ jobs:
   
     - name: Deploy to Azure Static Website
       run: |
-        az storage blob upload-batch --account-name 10wcosa --destination '$web' --source ./week1/site/ --pattern "*.html"
+        az storage blob upload-batch --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
     
     
