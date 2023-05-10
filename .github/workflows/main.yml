@@ -34,7 +34,7 @@ jobs:
       run: | 
         echo 1 ${{steps.ip.$ipaddr}}
         echo 2 ${{steps.ip.ipaddr}}
-        echo 3 $ipaddr
+        echo 3 $(ipaddr)
         
     - name: Deploy to Azure Static Website
       run: |
