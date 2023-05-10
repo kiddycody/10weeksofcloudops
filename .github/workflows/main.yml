@@ -14,8 +14,8 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+  
     - name: Deploy to Azure Static Website
       run: |
         az storage blob upload-batch --destination '$web' --source ./week1/site/ --pattern "*.html"
