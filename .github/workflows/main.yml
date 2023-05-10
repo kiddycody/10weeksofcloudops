@@ -10,7 +10,10 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-
+    
+    - name: Get IP address
+      run: curl 'https://api.ipify.org?format=json'
+      
     - name: Azure Login
       uses: azure/login@v1
       with:
