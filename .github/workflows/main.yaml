@@ -13,7 +13,7 @@ jobs:
         
       - name: Get IP address
         run: |
-          ipget = curl https://api.ipify.org
+          ipget = $(curl https://api.ipify.org)
           echo $ipget
       
       - name: Azure Login
