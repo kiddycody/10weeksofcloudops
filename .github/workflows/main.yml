@@ -18,10 +18,16 @@ jobs:
     - name: Get IP address
       id: ip
       run: |
-       sudo apt-get install -y jq
-       ipjson=$(curl 'https://api.ipify.org?format=json' -s)
-       ipaddr=$(echo $ipjson | jq .ip -r)
-       echo "ip=$ipaddr" >> $GITHUB_OUTPUT
+        ipget = curl https://api.ipify.org
+        echo $ipget
+        
+    #  run: |
+     #  sudo apt-get install -y jq
+      # ipjson=$(curl 'https://api.ipify.org?format=json' -s)
+       #ipaddr=$(echo $ipjson | jq .ip -r)
+       #echo "ip=$ipaddr" >> $GITHUB_OUTPUT
+
+          
        
     - name: Azure Login
       uses: azure/login@v1
@@ -30,8 +36,8 @@ jobs:
     - name: allow ip in storage firewall
       #run: |
        # az storage account network-rule add --account-name 10wcosa --ip-address 
-      run: | 
-        echo 2 "${{steps.ip.outputs.ipaddr}}"
+     # run: | 
+      #  echo 2 "${{steps.ip.outputs.ipaddr}}"
  
              
     
