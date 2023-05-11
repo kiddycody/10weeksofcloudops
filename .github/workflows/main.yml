@@ -10,7 +10,6 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - name: Get IP address
-#    id: ip
         run: |
           ipget = curl https://api.ipify.org
           echo $ipget
@@ -20,15 +19,15 @@ jobs:
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
       - name: allow ip in storage firewall
-      #run: |
-       # az storage account network-rule add --account-name 10wcosa --ip-address 
-     # run: | 
-      #  echo 2 "${{steps.ip.outputs.ipaddr}}"
+    
       - name: Deploy to Azure Static Website
         run: |
           az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
     
-    #
+    #  #run: |
+       # az storage account network-rule add --account-name 10wcosa --ip-address 
+     # run: | 
+      #  echo 2 "${{steps.ip.outputs.ipaddr}}"
 
   #  run: |
      #  sudo apt-get install -y jq
