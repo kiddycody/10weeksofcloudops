@@ -10,12 +10,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-        
-      - name: Get IP address
-        run: |
-          ip_address=$(curl https://api.ipify.org -s)
-          echo $ip_address
-      
+
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -23,6 +18,8 @@ jobs:
           
       - name: Add the IP address to azure storage exclusion
         run: |
+          ip_address=$(curl https://api.ipify.org -s)
+          echo The IP address of the runner is $ip_address
           az storage account network-rule add --account-name 10wcosa --ip-address $ip_address
       
       - name: Deploy to Azure Static Website
