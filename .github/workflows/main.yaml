@@ -21,7 +21,7 @@ jobs:
           ip_address=$(curl https://api.ipify.org -s)
           echo The IP address of the runner is $ip_address
           az storage account network-rule add --account-name 10wcosa --ip-address $ip_address
-      
+          sleep 300
       - name: Deploy to Azure Static Website
         run: |
           az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
