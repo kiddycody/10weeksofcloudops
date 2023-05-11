@@ -28,9 +28,9 @@ jobs:
       - name: Purge CDN to clear all the cache
         run: | 
           az cdn endpoint purge /
-          --resourcegroup '${{secrets.AZURE_CDN_RESOURCEGROUP}}' /
-          --profile-name '${{secrets.AZURE_CDN_PROFILENAME}}' /
-          --name '${{AZURE_CDN_NAME}}' /
+          --resourcegroup '${{ secrets.AZURE_CDN_RESOURCEGROUP}}' /
+          --profile-name '${{ secrets.AZURE_CDN_PROFILENAME}}' /
+          --name '${{secrets.AZURE_CDN_NAME}}' /
           --content-paths "/*"
           sleep 60
       - name: Remove excluded IP from storage
