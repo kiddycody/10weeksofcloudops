@@ -20,6 +20,10 @@ jobs:
         uses: azure/login@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
+          
+      - name: Add the IP address to azure storage exclusion
+        run: |
+          az storage account network-rule add --account-name 10wcosa --ip-address $ip_address
       
       - name: Deploy to Azure Static Website
         run: |
