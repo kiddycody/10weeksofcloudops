@@ -8,25 +8,25 @@ jobs:
   push-site-toazure:
     runs-on: ubuntu-latest
     steps: 
-    - uses: actions/checkout@v2
-    - name: Get IP address
+      - uses: actions/checkout@v2
+      - name: Get IP address
 #    id: ip
-      run: |
-        ipget = curl https://api.ipify.org
-        echo $ipget
+        run: |
+          ipget = curl https://api.ipify.org
+          echo $ipget
   
-    - name: Azure Login
-    - uses: azure/login@v1
-      with:
-        creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
-    - name: allow ip in storage firewall
+      - name: Azure Login
+      - uses: azure/login@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
+      - name: allow ip in storage firewall
       #run: |
        # az storage account network-rule add --account-name 10wcosa --ip-address 
      # run: | 
       #  echo 2 "${{steps.ip.outputs.ipaddr}}"
-    - name: Deploy to Azure Static Website
-      run: |
-        az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
+      - name: Deploy to Azure Static Website
+        run: |
+          az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
     
     #
 
