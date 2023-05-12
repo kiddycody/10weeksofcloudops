@@ -27,7 +27,7 @@ jobs:
           az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
       - name: Purge CDN to clear all the cache
         run: | 
-          az cdn endpoint purge --resourcegroup '${{ secrets.AZURE_CDN_RESOURCEGROUP}}' --profile-name '${{ secrets.AZURE_CDN_PROFILENAME}}' --name '${{secrets.AZURE_CDN_NAME}}' --content-paths '/*'
+          az cdn endpoint purge --resource-group '${{ secrets.AZURE_CDN_RESOURCEGROUP}}' --name '${{secrets.AZURE_CDN_NAME}}' --profile-name '${{ secrets.AZURE_CDN_PROFILENAME}}' --content-paths '/*'
           sleep 60
       - name: Remove excluded IP from storage
         run: |
