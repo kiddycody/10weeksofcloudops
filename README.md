@@ -10,3 +10,5 @@ This project was initiated by [**Piyush Sachdeva**](https://www.linkedin.com/in/
 * **Caching** - Azure CDN for edge caching
 
 * **DNS** - Personal namecheap.com DNS (you can use azure provided DNS)
+
+* **GitHub Actions** - Workflow automation to deploy website on azure
