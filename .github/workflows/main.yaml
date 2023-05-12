@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - week1
+      - week1/site/
 jobs:
   push-site-toazure:
     runs-on: ubuntu-latest
