@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'week1/'
 jobs:
   push-site-toazure:
     runs-on: ubuntu-latest
