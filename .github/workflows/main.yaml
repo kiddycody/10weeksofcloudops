@@ -32,6 +32,6 @@ jobs:
       - name: Remove excluded IP from storage
         run: |
           ip_address=$(curl https://api.ipify.org -s)
-          az storage account network-rule remove --account-name 102cosa --ip-address $ip_address
+          az storage account network-rule remove --account-name 10wcosa --ip-address $ip_address
         
    
