@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
       - name: echo variables
         run: |
-          echo cred '${{ secrets.AZURE_CREDENTIALS_13MAY }}'
+          echo cred '${{ secrets.AZURE_CREDENTIALS_13MAY}}'
           echo connection string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}'
           echo cdn name '${{secrets.AZURE_CDN_NAME}}'
           echo cdn resource group '${{ secrets.AZURE_CDN_RESOURCEGROUP}}'
@@ -23,7 +23,7 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS_13MAY }}'
+          creds: '${{ secrets.AZURE_CREDENTIALS_13MAY}}'
           
       - name: Add the IP address to azure storage exclusion
         run: |
