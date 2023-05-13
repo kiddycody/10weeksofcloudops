@@ -16,7 +16,7 @@ jobs:
         run: |
           echo cred '${{ secrets.AZURE_CREDENTIALS_13MAY}}'
           echo connection string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}'
-          echo cdn name '${{secrets.AZURE_CDN_NAME}}'
+          echo cdn name '${{ secrets.AZURE_CDN_NAME}}'
           echo cdn resource group '${{ secrets.AZURE_CDN_RESOURCEGROUP}}'
           echo cdn profile name '${{ secrets.AZURE_CDN_PROFILENAME}}'
           
