@@ -16,13 +16,18 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS_NEW }}'
+          creds: '${{ secrets.AZURE_CREDENTIALS_13MAY }}'
           
       - name: Add the IP address to azure storage exclusion
         run: |
           ip_address=$(curl https://api.ipify.org -s)
           echo The IP address of the runner is $ip_address
           az storage account network-rule add --account-name 10wcosa --ip-address $ip_address
+          echo cred '${{ secrets.AZURE_CREDENTIALS_13MAY }}'
+          echo connection string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}'
+          echo cdn name '${{secrets.AZURE_CDN_NAME}}'
+          echo cdn resource group '${{ secrets.AZURE_CDN_RESOURCEGROUP}}'
+          echo cdn profile name '${{ secrets.AZURE_CDN_PROFILENAME}}' 
           sleep 200
       - name: Deploy to Azure Static Website
         run: |
