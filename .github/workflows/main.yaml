@@ -1,44 +1,39 @@
 name: azure-static-website
-run-name: Ferouze
+run-name: Build
 on:
   push:
     branches:
       - main
-    paths:
+    paths: #optional, this runs only when the contents of site folder changes
       - 'week1/site/**'
 jobs:
   push-site-toazure:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #this is the runner name (the vm that runs the workflow)
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: echo variables
-        run: |
-          echo cred '${{ secrets.AZURE_CREDENTIALS_13MAY}}'
-          echo connection string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}'
-          echo cdn name '${{ secrets.AZURE_CDN_NAME}}'
-          echo cdn resource group '${{ secrets.AZURE_CDN_RESOURCEGROUP}}'
-          echo cdn profile name '${{ secrets.AZURE_CDN_PROFILENAME}}'
           
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS_13MAY}}'
+          creds: '${{ secrets.AZURE_CREDENTIALS_13MAY}}' #The secret we created for you it might be just AZURE_CREDENTIALS and not 13MAY
           
-      - name: Add the IP address to azure storage exclusion
+      - name: Add the IP address to azure storage exclusion #Here, i am getting the IP address of the runner and adding it to the exclusion on storage firewall
         run: |
           ip_address=$(curl https://api.ipify.org -s)
           echo The IP address of the runner is $ip_address
           az storage account network-rule add --account-name 10wcosa --ip-address $ip_address
-          sleep 200
-      - name: Deploy to Azure Static Website
+          sleep 200 
+      # The sleep 200 waits for 200 seconds before proceeding to run the below step
+      
+      - name: Deploy to Azure Static Website #In the below, $web is the container where we are uploading our files to.
         run: |
           az storage blob upload-batch --overwrite --account-name 10wcosa --connection-string '${{ secrets.AZURE_STORAGE_CONNECTIONSTRING}}' --destination '$web' --source ./week1/site/ --pattern "*.html"
-      - name: Purge CDN to clear all the cache
+      - name: Purge CDN to clear all the cache # Since we are using CDN, we will be puring the CDN to clear all the caches of our website
         run: | 
           az cdn endpoint purge --resource-group '${{ secrets.AZURE_CDN_RESOURCEGROUP}}' --name '${{secrets.AZURE_CDN_NAME}}' --profile-name '${{ secrets.AZURE_CDN_PROFILENAME}}' --content-paths '/*'
           sleep 60
-      - name: Remove excluded IP from storage
+      - name: Remove excluded IP from storage #This removes the IP exclusion added to the storage firewall, since we dont need it now.
         run: |
           ip_address=$(curl https://api.ipify.org -s)
           az storage account network-rule remove --account-name 10wcosa --ip-address $ip_address
